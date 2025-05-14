@@ -1,0 +1,31 @@
+Guide on how to create your first fast_api 
+create folder
+open folder in vs code
+
+commands in terminal is {
+
+python -m venv myenv
+myenv\Scripts\activate
+pip install fastapi uvicorn pydantic
+ 
+}
+
+create main.py
+
+from fastapi Import FastAPI
+
+app = fastAPI()
+@app.get("/")
+def hello():
+    return{"message":'hello world'}
+
+uvicorn main:app --reload
+
+127.0.0.1:8000
+127.0.0.1:8000/docs
+
+
+@app.get("/aboutmylife")
+def aboutme():
+    return{"message":"meri zindagi jhund hai q k abhi bhi main beginner level vids dekh rha hn"}
+

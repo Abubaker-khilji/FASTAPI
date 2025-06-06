@@ -1,9 +1,7 @@
 from fastapi import FastAPI
+import json
 
 app = FastAPI()
-@app.get("/")
-def hello():
-    return{"message":'hello world'}
 
 
 @app.get("/aboutmylife")
@@ -12,6 +10,31 @@ def aboutme():
 
 
 
-@app.get("/meracareer")
-def mycareer():
-    return{"career":"abhi to main dataentry ka kaam kur rha hn felt like a failure aur mujhe kuch nahi pata ki mera kya bnay ga"}   
+@app.get('/about')
+def about():
+    return {'message': 'A fully functional API to manage your patient records'}
+
+def load_data():
+    with open('patients.json', 'r') as f:
+        data = json.load(f)
+
+    return data
+        
+
+
+@app.get('/view')
+def view():
+    data = load_data()
+
+
+    return data
+
+
+@app.get('/patients/{patient_id}')
+def view_patient(patient_id : str):
+    data = load_data()
+
+    if patient_id in data:
+        return data[patient_id]
+        
+    return{'errror' : 'pateints id not found'}
